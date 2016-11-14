@@ -30,7 +30,7 @@ passport.use(new DiscordStrategy(
 #### Authentication Requests
 Use `passport.authenticate()`, and specify the `'discord'` strategy to authenticate requests.
 
-Foe example, as a route middleware in an Express app:
+For example, as a route middleware in an Express app:
 
 ```javascript
 app.get('/auth/discord', passport.authenticate('discord'));
