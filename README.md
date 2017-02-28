@@ -41,6 +41,13 @@ app.get('/auth/discord/callback', passport.authenticate('discord', {
 });
 ```
 
+If using the `bot` scope, the `permissions` option can be set to indicate
+specific permissions your bot needs on the server ([permission codes](https://discordapp.com/developers/docs/topics/permissions)):
+
+```javascript
+app.get("/auth/discord", passport.authenticate("discord", {permissions: 66321471}));
+```
+
 
 ## Examples
 An Express server example can be found in the `/example` directory. Be sure to `npm install` in that directory to get the dependencies.
