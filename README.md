@@ -1,10 +1,10 @@
 # passport-discord
 
-Passport strategy for authentication with [Discord](http://discordapp.com) through the OAuth 2.0 API.
+Passport strategy for authentication with [Discord](http://discord.com) through the OAuth 2.0 API.
 
 ~~At time of writing there is no official page/documentation for this, so information can be read off the example project, such as how to set up an API application [here](http://github.com/vishnevskiy/discord-oauth2-example).~~ This is actually no longer the case! Docs hooray!
 
-Before using this strategy, it is strongly recommended that you read through the official docs page [here](https://discordapp.com/developers/docs/topics/oauth2), especially about the scopes and understand how the auth works.
+Before using this strategy, it is strongly recommended that you read through the official docs page [here](https://discord.com/developers/docs/topics/oauth2), especially about the scopes and understand how the auth works.
 
 ## Usage
 `npm install passport-discord --save`
@@ -45,7 +45,7 @@ app.get('/auth/discord/callback', passport.authenticate('discord', {
 ```
 
 If using the `bot` scope, the `permissions` option can be set to indicate
-specific permissions your bot needs on the server ([permission codes](https://discordapp.com/developers/docs/topics/permissions)):
+specific permissions your bot needs on the server ([permission codes](https://discord.com/developers/docs/topics/permissions)):
 
 ```javascript
 app.get("/auth/discord", passport.authenticate("discord", { permissions: 66321471 }));
