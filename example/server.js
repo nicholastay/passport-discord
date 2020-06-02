@@ -1,7 +1,7 @@
 var express  = require('express')
   , session  = require('express-session')
   , passport = require('passport')
-  , Strategy = require('../lib').Strategy
+  , Strategy = require('passport-discord').Strategy
   , app      = express();
 
 passport.serializeUser(function(user, done) {
