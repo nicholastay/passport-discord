@@ -2,7 +2,7 @@
 
 **Notice**: I'm no longer too active with the Discord API, and only tinker around occasionally. So, if there is anybody who would like to be more active in maintaining, I'm happy to link to your fork as the new solution to use or give project permissions on this repo.
 
-Passport strategy for authentication with [Discord](http://discordapp.com) through the OAuth 2.0 API.
+Passport strategy for authentication with [Discord](http://discord.com) through the OAuth 2.0 API.
 
 Before using this strategy, it is strongly recommended that you read through the official docs page [here](https://discord.com/developers/docs/topics/oauth2), especially about the scopes and understand how the auth works.
 
@@ -45,7 +45,7 @@ app.get('/auth/discord/callback', passport.authenticate('discord', {
 ```
 
 If using the `bot` scope, the `permissions` option can be set to indicate
-specific permissions your bot needs on the server ([permission codes](https://discordapp.com/developers/docs/topics/permissions)):
+specific permissions your bot needs on the server ([permission codes](https://discord.com/developers/docs/topics/permissions)):
 
 ```javascript
 app.get("/auth/discord", passport.authenticate("discord", { permissions: 66321471 }));
