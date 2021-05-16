@@ -19,7 +19,7 @@ passport.use(new Strategy({
     clientSecret: '',
     callbackURL: 'http://localhost:5000/callback',
     scope: scopes,
-    prompt: prompt
+    prompt,
 }, (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
         return done(null, profile);
