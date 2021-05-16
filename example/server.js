@@ -47,10 +47,10 @@ app.get('/info', checkAuth, (req, res) => {
 });
 
 
-const checkAuth = (req, res, next) => {
+function checkAuth (req, res, next) {
     if (req.isAuthenticated()) return next();
     res.send('not logged in :(');
-}
+} //`function` syntax required due to hoisting
 
 
 app.listen(5000, err => {
