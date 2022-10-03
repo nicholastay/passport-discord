@@ -71,7 +71,7 @@ function(accessToken, refreshToken, profile, cb) {
     profile.refreshToken = refreshToken; // store this for later refreshes
     User.findOrCreate({ discordId: profile.id }, function(err, user) {
         if (err)
-            return done(err);
+            return cb(err);
 
         return cb(err, user);
     });
