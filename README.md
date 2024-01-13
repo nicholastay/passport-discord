@@ -1,103 +1,55 @@
-# passport-discord
+# passport-discord (By AtsumiFlex)
 
-**Notice**: I'm no longer too active with the Discord API, and only tinker around occasionally. So, if there is anybody who would like to be more active in maintaining, I'm happy to link to your fork as the new solution to use or give project permissions on this repo.
+passport-discord is a fork of the "https://github.com/nicholastay/passport-discord" project, tailored for OAuth2
+authentication with Discord. It
+simplifies
+integrating Discord authentication into your Node.js applications.
 
-Passport strategy for authentication with [Discord](http://discordapp.com) through the OAuth 2.0 API.
+## Installation
 
-Before using this strategy, it is strongly recommended that you read through the official docs page [here](https://discord.com/developers/docs/topics/oauth2), especially about the scopes and understand how the auth works.
+To install passport-discord, run the following command in your project directory:
+
+```
+npm install --save
+```
 
 ## Usage
-`npm install passport-discord --save`
 
-#### Configure Strategy
-The Discord authentication strategy authenticates users via a Discord user account and OAuth 2.0 token(s). A Discord API client ID, secret and redirect URL must be supplied when using this strategy. The strategy also requires a `verify` callback, which receives the access token and an optional refresh token, as well as a `profile` which contains the authenticated Discord user's profile. The `verify` callback must also call `cb` providing a user to complete the authentication.
+Here's a basic example of how to use passport-discord in a Node.js application:
 
-```javascript
-var DiscordStrategy = require('passport-discord').Strategy;
+```typescript
+import Strategy from 'passport-discord';
 
-var scopes = ['identify', 'email', 'guilds', 'guilds.join'];
+// Define your strategy options
+const strategyOptions = {
+    clientID: 'YOUR_CLIENT_ID',
+    clientSecret: 'YOUR_CLIENT_SECRET',
+    callbackURL: 'YOUR_CALLBACK_URL',
+    scope: ['identify', 'email']
+};
 
-passport.use(new DiscordStrategy({
-    clientID: 'id',
-    clientSecret: 'secret',
-    callbackURL: 'callbackURL',
-    scope: scopes
-},
-function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ discordId: profile.id }, function(err, user) {
+// Define your verify function
+const verifyFunction = async (accessToken, refreshToken, profile, cb) => {
+    // Your verification logic here
+    await User.findOrCreate({discordId: profile.id}, (err, user) => {
         return cb(err, user);
     });
-}));
+}
+
+// Create a new AtsumiFlex strategy
+const discordStrategy = new Strategy(strategyOptions, verifyFunction);
+
+// Use this strategy in your application
 ```
 
-#### Authentication Requests
-Use `passport.authenticate()`, and specify the `'discord'` strategy to authenticate requests.
+Replace `'YOUR_CLIENT_ID'`, `'YOUR_CLIENT_SECRET'`, and `'YOUR_CALLBACK_URL'` with your Discord application's details.
 
-For example, as a route middleware in an Express app:
+## Contributing
 
-```javascript
-app.get('/auth/discord', passport.authenticate('discord'));
-app.get('/auth/discord/callback', passport.authenticate('discord', {
-    failureRedirect: '/'
-}), function(req, res) {
-    res.redirect('/secretstuff') // Successful auth
-});
-```
-
-If using the `bot` scope, the `permissions` option can be set to indicate
-specific permissions your bot needs on the server ([permission codes](https://discordapp.com/developers/docs/topics/permissions)):
-
-```javascript
-app.get("/auth/discord", passport.authenticate("discord", { permissions: 66321471 }));
-```
-
-#### Refresh Token Usage
-In some use cases where the profile may be fetched more than once or you want to keep the user authenticated, refresh tokens may wish to be used. A package such as `passport-oauth2-refresh` can assist in doing this.
-
-Example:
-
-`npm install passport-oauth2-refresh --save`
-
-```javascript
-var DiscordStrategy = require('passport-discord').Strategy
-  , refresh = require('passport-oauth2-refresh');
-
-var discordStrat = new DiscordStrategy({
-    clientID: 'id',
-    clientSecret: 'secret',
-    callbackURL: 'callbackURL'
-},
-function(accessToken, refreshToken, profile, cb) {
-    profile.refreshToken = refreshToken; // store this for later refreshes
-    User.findOrCreate({ discordId: profile.id }, function(err, user) {
-        if (err)
-            return done(err);
-
-        return cb(err, user);
-    });
-});
-
-passport.use(discordStrat);
-refresh.use(discordStrat);
-```
-
-... then if we require refreshing when fetching an update or something ...
-
-```javascript
-refresh.requestNewAccessToken('discord', profile.refreshToken, function(err, accessToken, refreshToken) {
-    if (err)
-        throw; // boys, we have an error here.
-    
-    profile.accessToken = accessToken; // store this new one for our new requests!
-});
-```
-
-
-## Examples
-An Express server example can be found in the `/example` directory. Be sure to `npm install` in that directory to get the dependencies.
-
-## Credits
-* Jared Hanson - used passport-github to understand passport more and kind of as a base.
+Contributions to passport-discord are welcome. Please submit a pull request or open an issue if you have any suggestions
+or
+improvements.
 
 ## License
-Licensed under the ISC license. The full license text can be found in the root of the project repository.
+
+This project is licensed under the MIT License.
