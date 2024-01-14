@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    // Specify ECMAScript target version
+    "module": "commonjs",
+    // Specify module code generation
+    "lib": [
+      "es2018"
+    ],
+    // Specify library files to be included in the compilation
+    "outDir": "./dist",
+    // Redirect output structure to the directory
+    "rootDir": "./src",
+    // Specify the root directory of input files
+    "declaration": true,
+    // Generates corresponding .d.ts file
+    "declarationDir": "./dist",
+    // Specify the output directory for generated declaration files
+    "strict": true,
+    // Enable all strict type-checking options
+    "esModuleInterop": true,
+    // Enables emit interoperability between CommonJS and ES Modules
+    "skipLibCheck": true,
+    // Skip type checking of all declaration files (*.d.ts)
+    "forceConsistentCasingInFileNames": true
+    // Disallow inconsistently-cased references to the same file
+  },
+  "include": [
+    "src/**/*"
+    // Include all files in the src directory
+  ],
+  "exclude": [
+    "node_modules",
+    // Exclude the node_modules directory
+    "**/*.spec.ts"
+    // Exclude test files
+  ]
+}
