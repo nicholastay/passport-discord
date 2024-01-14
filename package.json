@@ -1,7 +1,7 @@
 {
   "name": "passport-discord",
   "version": "0.1.4-2024.01.13",
-  "description": "Passport strategy for authentication with Discord (discordapp.com)",
+  "description": "Passport strategy for authentication with Discord (discord.com)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "repository": {
