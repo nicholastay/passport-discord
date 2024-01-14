@@ -30,8 +30,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "passport-oauth2": "^1.5.0",
-    "tslib": "^2.6.2"
+    "passport-oauth2": "^1.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

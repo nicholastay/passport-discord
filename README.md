@@ -17,6 +17,8 @@ npm install --save
 
 Here's a basic example of how to use passport-discord in a Node.js application:
 
+### Typescript :
+
 ```typescript
 import Strategy from 'passport-discord';
 
@@ -40,6 +42,31 @@ const verifyFunction = async (accessToken, refreshToken, profile, cb) => {
 const discordStrategy = new Strategy(strategyOptions, verifyFunction);
 
 // Use this strategy in your application
+```
+
+### Javascript :
+
+```javascript
+const Strategy = require('passport-discord').Strategy;
+
+// Define your strategy options
+const strategyOptions = {
+    clientID: 'YOUR_CLIENT_ID',
+    clientSecret: 'YOUR_CLIENT_SECRET',
+    callbackURL: 'YOUR_CALLBACK_URL',
+    scope: ['identify', 'email']
+};
+
+// Define your verify function
+const verifyFunction = async (accessToken, refreshToken, profile, cb) => {
+    // Your verification logic here
+    await User.findOrCreate({discordId: profile.id}, (err, user) => {
+        return cb(err, user);
+    });
+}
+
+// Create a new AtsumiFlex strategy
+const discordStrategy = new Strategy(strategyOptions, verifyFunction);
 ```
 
 Replace `'YOUR_CLIENT_ID'`, `'YOUR_CLIENT_SECRET'`, and `'YOUR_CALLBACK_URL'` with your Discord application's details.

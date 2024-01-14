@@ -1,21 +1,61 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-const passport_oauth2_1 = tslib_1.__importDefault(require("passport-oauth2"));
-/**
- * Strategy for OAuth2 authentication, particularly configured for Discord.
- *
- * @param {StrategyOptionsWithRequest} options - Strategy options with request.
- * @param {VerifyFunctionWithRequest} verify - Verification function with request.
- * @returns An instance of OAuth2Strategy.
- */
-const Strategy = (options, verify) => {
-    // Set default values for options if not provided
-    options = options || {};
-    options.authorizationURL = options.authorizationURL || "https://discord.com/api/oauth2/authorize";
-    options.tokenURL = options.tokenURL || "https://discord.com/api/oauth2/token";
-    options.scopeSeparator = options.scopeSeparator || " ";
-    // Return an instance of OAuth2Strategy with the configured options
-    return new passport_oauth2_1.default(options, verify);
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.default = Strategy;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Strategy = void 0;
+const passport_oauth2_1 = __importDefault(require("passport-oauth2"));
+class Strategy extends passport_oauth2_1.default {
+    /**
+     * Creates an instance of Strategy.
+     *
+     * @param {StrategyOptionsWithRequest} options - Strategy options with request.
+     * @param {VerifyFunctionWithRequest} verify - Verification function with request.
+     */
+    constructor(options, verify) {
+        options = options || {};
+        options.authorizationURL = options.authorizationURL || "https://discord.com/api/oauth2/authorize";
+        options.tokenURL = options.tokenURL || "https://discord.com/api/oauth2/token";
+        options.scopeSeparator = options.scopeSeparator || " ";
+        super(options, verify);
+        this.name = "discord";
+        this._oauth2.useAuthorizationHeaderforGET(true);
+    }
+    userProfile(accessToken, done) {
+        this._oauth2.get("https://discord.com/api/v10/users/@me", accessToken, (err, body) => {
+            if (err) {
+                return done(new Error(`Failed to fetch user profile: ${err}`));
+            }
+            try {
+                const json = JSON.parse(body);
+                done(null, json);
+            }
+            catch (e) {
+                done(e);
+            }
+        });
+    }
+    checkScope(scope, accessToken, cb) {
+        this._oauth2.get("https://discord.com/api/v10/users/@me", accessToken, (err, body) => {
+            if (err) {
+                return cb(new Error(`Failed to fetch user profile: ${err}`));
+            }
+            try {
+                const parsedData = JSON.parse(body);
+                if (parsedData.scope.includes(scope)) {
+                    cb(null, true);
+                }
+                else {
+                    cb(null, false);
+                }
+            }
+            catch (e) {
+                cb(e);
+            }
+        });
+    }
+    authorizationParams(options) {
+        return { prompt: options.prompt };
+    }
+}
+exports.Strategy = Strategy;
