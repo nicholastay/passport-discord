@@ -34,7 +34,7 @@
     "start": "ts-node-dev --respawn --transpile-only src/index.ts"
   },
   "author": {
-    "name": "AtsumiFlex",
+    "name": "3tatsu",
     "url": "https://github.com/3tatsu"
   },
   "dependencies": {
