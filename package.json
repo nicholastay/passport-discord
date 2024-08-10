@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/3tatsu/passport-discord.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "passport",
     "discord",
