@@ -1,23 +1,29 @@
 {
-  "name": "passport-discord",
-  "version": "0.1.4-2024.01.13",
+  "name": "@atsumi/passport-discord",
+  "version": "1.0.0",
   "description": "Passport strategy for authentication with Discord (discord.com)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "packageManager": "pnpm@9.7.0",
+  "readme": "README.md",
+  "type": "commonjs",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AtsumiFlex/passport-discord.git"
+    "url": "git+https://github.com/3tatsu/passport-discord.git"
   },
   "keywords": [
     "passport",
     "discord",
     "auth",
     "authentication",
-    "authn",
-    "identity"
+    "identity",
+    "types",
+    "typescript"
   ],
-  "readme": "README.md",
-  "type": "commonjs",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "eslint src --ext .ts",
@@ -26,20 +32,22 @@
   },
   "author": {
     "name": "AtsumiFlex",
-    "url": "https://github.com/AtsumiFlex"
+    "url": "https://github.com/3tatsu"
   },
-  "license": "MIT",
   "dependencies": {
-    "passport-oauth2": "^1.5.0"
+    "discord-api-types": "^0.37.93",
+    "passport-oauth2": "^1.8.0",
+    "tslib": "^2.6.3"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "@types/passport-oauth2": "^1.4.15",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
-    "eslint": "^8.56.0",
+    "@types/eslint": "^9.6.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.15",
+    "@types/passport-oauth2": "^1.4.17",
+    "eslint": "^8.57.0",
+    "eslint-config-neon": "^0.1.62",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.4"
   }
 }

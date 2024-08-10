@@ -1,4 +1,4 @@
-# passport-discord (By AtsumiFlex)
+# passport-discord (By 3tatsu)
 
 passport-discord is a fork of the "https://github.com/nicholastay/passport-discord" project, tailored for OAuth2
 authentication with Discord. It

@@ -1,38 +1,39 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es2018",
-    // Specify ECMAScript target version
-    "module": "commonjs",
-    // Specify module code generation
+    "incremental": true,
+    "composite": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "target": "ESNext",
     "lib": [
-      "es2018"
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
     ],
-    // Specify library files to be included in the compilation
-    "outDir": "./dist",
-    // Redirect output structure to the directory
-    "rootDir": "./src",
-    // Specify the root directory of input files
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleDetection": "auto",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "declaration": true,
-    // Generates corresponding .d.ts file
-    "declarationDir": "./dist",
-    // Specify the output directory for generated declaration files
-    "strict": true,
-    // Enable all strict type-checking options
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": false,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "isolatedDeclarations": true,
     "esModuleInterop": true,
-    // Enables emit interoperability between CommonJS and ES Modules
-    "skipLibCheck": true,
-    // Skip type checking of all declaration files (*.d.ts)
-    "forceConsistentCasingInFileNames": true
-    // Disallow inconsistently-cased references to the same file
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*"
-    // Include all files in the src directory
   ],
   "exclude": [
     "node_modules",
-    // Exclude the node_modules directory
-    "**/*.spec.ts"
-    // Exclude test files
+    "dist"
   ]
 }
