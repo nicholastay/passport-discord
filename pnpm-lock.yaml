@@ -36,6 +36,9 @@ importers:
       eslint-config-neon:
         specifier: ^0.1.62
         version: 0.1.62(eslint@8.57.0)(svelte@3.59.2)(typescript@5.5.4)
+      husky:
+        specifier: ^9.1.4
+        version: 9.1.4
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.14.15)(typescript@5.5.4)
@@ -1325,6 +1328,11 @@ packages:
   hosted-git-info@7.0.2:
     resolution: {integrity: sha512-puUZAUKT5m8Zzvs72XWy3HtvVbTWljRE66cP60bxJzAqf2DgICo7lYTY2IHUmLnNpjYvw5bvmoHvPc0QO2a62w==}
     engines: {node: ^16.14.0 || >=18.0.0}
+
+  husky@9.1.4:
+    resolution: {integrity: sha512-bho94YyReb4JV7LYWRWxZ/xr6TtOTt8cMfmQ39MQYJ7f/YE268s3GdghGwi+y4zAeqewE5zYLvuhV0M0ijsDEA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   ignore@5.3.1:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
@@ -4331,6 +4339,8 @@ snapshots:
   hosted-git-info@7.0.2:
     dependencies:
       lru-cache: 10.4.3
+
+  husky@9.1.4: {}
 
   ignore@5.3.1: {}
 

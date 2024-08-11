@@ -1,26 +1,47 @@
 import { Buffer } from "node:buffer";
-import type { APIUser } from "discord-api-types/v10";
+import type { OutgoingHttpHeaders } from "node:http";
+import type { APIUser, OAuth2Scopes, Snowflake } from "discord-api-types/v10";
 import type { Request } from "express";
-import type { StrategyOptionsWithRequest, VerifyCallback } from "passport-oauth2";
+import type { StateStore, VerifyCallback } from "passport-oauth2";
 import OAuth2Strategy from "passport-oauth2";
 
 /**
  * Type definition for the verify function used in the DiscordStrategy.
  *
- * @template T - The type of the user profile.
  * @param req - The request object.
  * @param accessToken - The access token.
  * @param refreshToken - The refresh token.
  * @param profile - The user profile.
  * @param verified - The callback to call when verification is complete.
  */
-export type VerifyFunction<T> = (
+export type VerifyFunction = (
 	req: Request,
 	accessToken: string,
 	refreshToken: string,
-	profile: T,
+	profile: APIUser,
 	verified: VerifyCallback,
 ) => void;
+
+/**
+ * Type definition for the options used in the DiscordStrategy.
+ */
+export type StrategyOptions = {
+	authorizationURL: string;
+	callbackURL?: string | undefined;
+	clientID: Snowflake;
+	clientSecret: string;
+	customHeaders?: OutgoingHttpHeaders | undefined;
+	passReqToCallback: true;
+	pkce?: boolean | undefined;
+	proxy?: any;
+	scope?: OAuth2Scopes | OAuth2Scopes[] | undefined;
+	scopeSeparator?: string | undefined;
+	sessionKey?: string | undefined;
+	skipUserProfile?: any;
+	state?: any;
+	store?: StateStore | undefined;
+	tokenURL: string;
+};
 
 /**
  * DiscordStrategy class for authenticating with Discord using OAuth2.
@@ -34,7 +55,7 @@ export class DiscordStrategy extends OAuth2Strategy {
 	 * @param options - The strategy options.
 	 * @param verify - The verify function.
 	 */
-	public constructor(options: StrategyOptionsWithRequest, verify: VerifyFunction<APIUser>) {
+	public constructor(options: StrategyOptions, verify: VerifyFunction) {
 		options.authorizationURL = options.authorizationURL ?? "https://discord.com/api/oauth2/authorize";
 		options.tokenURL = options.tokenURL ?? "https://discord.com/api/oauth2/token";
 		options.scopeSeparator = options.scopeSeparator ?? " ";
@@ -87,5 +108,3 @@ export class DiscordStrategy extends OAuth2Strategy {
 		return { prompt: options.prompt };
 	}
 }
-
-export { type APIUser } from "discord-api-types/v10";
