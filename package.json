@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@3tatsu/passport-discord",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Passport strategy for authentication with Discord (discord.com)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -40,7 +40,6 @@
     "url": "https://github.com/3tatsu"
   },
   "dependencies": {
-    "discord-api-types": "^0.37.93",
     "passport-oauth2": "^1.8.0",
     "tslib": "^2.6.3"
   },
@@ -49,6 +48,7 @@
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.15",
     "@types/passport-oauth2": "^1.4.17",
+    "discord-api-types": "^0.37.94",
     "eslint": "^8.57.0",
     "eslint-config-neon": "^0.1.62",
     "husky": "^9.1.4",
