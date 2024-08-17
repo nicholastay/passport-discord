@@ -34,10 +34,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/auth/discord", passport.authenticate("oauth2"));
+app.get("/auth/discord", passport.authenticate("discord"));
 
 app.get("/auth/discord/callback",
-	passport.authenticate("oauth2", { failureRedirect: "/" }),
+	passport.authenticate("discord", { failureRedirect: "/" }),
 	(req, res) => {
 		res.redirect("/profile");
 	});
