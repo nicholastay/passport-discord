@@ -1,6 +1,12 @@
-# passport-discord
+# Archived
 
-**Notice**: I'm no longer too active with the Discord API, and only tinker around occasionally. So, if there is anybody who would like to be more active in maintaining, I'm happy to link to your fork as the new solution to use or give project permissions on this repo.
+This package is no longer maintained.
+
+Please consider migrating to a maintained alternative, (following packages are author unvetted) such as: [discord-strategy](https://www.npmjs.com/package/discord-strategy), [passport-discord-auth](https://www.npmjs.com/package/passport-discord-auth), ...
+
+---
+
+# passport-discord
 
 Passport strategy for authentication with [Discord](http://discordapp.com) through the OAuth 2.0 API.
 
